@@ -2,7 +2,7 @@
   "name": "urlshorter",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://Abhishek07Kalra.github.io/ReactUrlShortner",
+  "homepage": "http://abhishek07kalra.github.io/ReactUrlShortner",
   "dependencies": {
     "-": "0.0.1",
     "@testing-library/jest-dom": "^5.11.6",
