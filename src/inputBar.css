@@ -30,5 +30,13 @@ button{
 .linkaddress{
     color:grey;
     margin-left: -20px;
+    text-decoration: none;
+    font-weight: 0;
+    border-style: none;
+    border: 0px;
+}
+a{
+    text-decoration: none;
+    color: inherit;
 }
 

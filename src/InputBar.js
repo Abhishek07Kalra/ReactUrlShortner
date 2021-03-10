@@ -1,24 +1,39 @@
 import './inputBar.css';
 import axios from './axios';
-import {useState , useEffect} from 'react';
+import {useState } from 'react';
 function InputBar() {
  const [data , setdata] = useState("");
  const [inputValue , setinput] = useState("");
  function click()
  {
-   if(inputValue == "" || !inputValue.includes(".")){
-     alert("Invalid Input");
-     return;
-   }
-   setdata("Please Wait...")
-   axios.post('/addurl' , {
-    originalUrl : inputValue
-   }).then(response=>{
-      setdata(response.data);
-      setinput("");
-   }).catch(err=>{
-     alert(err);
-   })
+   var boolvalue = false;
+   var password;
+   var original;
+   if((inputValue === "") || ((!inputValue.includes(".")) && (!inputValue.includes("myshorturl")))){
+    alert("Invalid Input");
+    return;
+  }
+    if(inputValue === "myshorturl"){
+     password = prompt("Enter your password");
+     original = prompt("Enter your original link");
+     var link = prompt("Enter your short link");
+     setinput(original);
+     boolvalue = true;
+    }
+    setdata("Please Wait...")
+    axios.post('/addurl' , {
+     originalUrl : inputValue==="myshorturl" ? original: inputValue ,
+     passcode : boolvalue,
+     pass : password,
+     short : link
+    }).then(response=>{
+       setdata(response.data);
+       setinput("");
+    }).catch(err=>{
+      setdata("");
+      alert(err);
+    })
+
  }
   return (
       <div className='hello'>
@@ -27,7 +42,7 @@ function InputBar() {
         &nbsp;&nbsp;&nbsp;
         <button onClick={click}>Create</button>
         <br/><br/>
-        <h2 className="linkaddress">{data}</h2>
+        <h2 className="linkaddress"><a href={data} target="blank">{data}</a></h2>
         </center>
       </div>
   );
