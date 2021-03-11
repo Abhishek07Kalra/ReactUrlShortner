@@ -1,0 +1,61 @@
+.sign{
+    width:auto;
+    height: auto;
+    max-width: 600px;
+    background-color: white;
+    margin-top: 25px;
+    border-radius: 50px;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    box-shadow: 1px 5px 5px 2px grey;
+
+}
+
+.but{
+    margin-top: 35px;
+    margin-bottom: 10px;
+    outline: 0;
+    text-decoration: none;
+    border-radius: 10px;
+    text-decoration: none;
+}
+.but:hover{
+    background-color: rgb(155, 236, 34);
+    outline: 0;
+}
+.but:active{
+    border:none;
+    outline: 0;
+    background-color: rgb(129, 207, 12);
+}
+.but::after{
+    outline: 0;
+    border:none;
+}
+.top{
+    margin-top: 100px;
+}
+.input{
+    width: 400px;
+    align-items: center;
+    height: 50px;
+    border: none;
+    border:0;
+    padding-top: 15px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 2px solid black;
+    outline: none;
+    font-size: 20px;
+}
+@media screen and (max-width: 700px) {
+    .sign{
+        width: 320px;
+    }
+    .input{
+        width: 250px;
+    }
+
+  }

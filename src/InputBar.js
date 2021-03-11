@@ -1,7 +1,9 @@
 import './inputBar.css';
 import axios from './axios';
+import logo from "./LogoMakr-2gRYkr.png"
 import {useState } from 'react';
-function InputBar() {
+import Auth  from './firebase';
+function InputBar({myfunction}) {
  const [data , setdata] = useState("");
  const [inputValue , setinput] = useState("");
  function click()
@@ -25,7 +27,8 @@ function InputBar() {
      originalUrl : inputValue==="myshorturl" ? original: inputValue ,
      passcode : boolvalue,
      pass : password,
-     short : link
+     short : link,
+     user : Auth.currentUser
     }).then(response=>{
        setdata(response.data);
        setinput("");
@@ -35,16 +38,30 @@ function InputBar() {
     })
 
  }
+function logout(){
+  Auth.signOut();
+  myfunction(null);
+}
   return (
+    <div>
+      <div className="navbar">
+        <div>
+        <img src={logo}></img>
+        </div>
+        
+        <button className="logout" onClick={logout}> Logout</button>
+      </div>
       <div className='hello'>
         <center>
-        <input type="text" className="inputbar" placeholder="Enter Your Link Here" value={inputValue} onChange={e => setinput(e.target.value)}></input>
+        <input type="text" className="inputbar" placeholder="Enter Your Link Here" value={inputValue} onKeyDown={(e)=>e.key=="Enter" ? click() : 1 } onChange={e => setinput(e.target.value)}></input>
         &nbsp;&nbsp;&nbsp;
         <button onClick={click}>Create</button>
         <br/><br/>
         <h2 className="linkaddress"><a href={data} target="blank">{data}</a></h2>
         </center>
       </div>
+    </div>
+      
   );
 }
 export default InputBar;
