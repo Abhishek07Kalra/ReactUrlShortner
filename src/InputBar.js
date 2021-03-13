@@ -4,7 +4,7 @@ import logo from "./LogoMakr-2gRYkr.png"
 import {useState } from 'react';
 import Auth  from './firebase';
 function InputBar({myfunction}) {
- const [data , setdata] = useState("");
+ const [data , setdata] = useState("1");
  const [copy , setcopy] = useState("Copy");
  const [inputValue , setinput] = useState("");
  function click()
@@ -73,11 +73,11 @@ function logout(){
         &nbsp;&nbsp;&nbsp;
         <button onClick={click}>Create</button>
         <br/><br/>
-        <h2 className="linkaddress" >{data}</h2>
+        <p className="url" id="link">https://cgcshrt.herokuapp.com/OyNkMIfFM</p>
         <br/>
         {
           data ? 
-          <button onClick={copylink} style={{width:"80px"}}>{copy}</button> :
+          <button  className="copybut text-center" onClick={copylink} style={{width:"80px"} , {marginTop:"-10px"}}>{copy}</button> :
           <h1></h1>
         }
         </center>

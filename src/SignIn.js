@@ -36,7 +36,7 @@ const SignIn = ({myfunction})=>{
                 <br/>
                 <h5>or</h5>
                 <h5 style={{marginBottom:"10px"}}><Link to="/ReactUrlShortner/signup">Signup</Link></h5>
-                <p style={{cursor:"pointer"}} onClick={skip}>Skip for now</p>
+                <p className="skip" style={{cursor:"pointer"}} onClick={skip}>Skip for now</p>
                 <br/>
                 </center>
             </div>

@@ -1,5 +1,4 @@
 import InputBar from './InputBar';
-import  './App.css';
 import Auth  from './firebase';
 import {useState} from 'react';
 import SignIn from './SignIn';
