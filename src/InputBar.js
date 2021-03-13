@@ -5,6 +5,7 @@ import {useState } from 'react';
 import Auth  from './firebase';
 function InputBar({myfunction}) {
  const [data , setdata] = useState("");
+ const [copy , setcopy] = useState("Copy");
  const [inputValue , setinput] = useState("");
  function click()
  {
@@ -46,6 +47,11 @@ function InputBar({myfunction}) {
   textField.select()
   document.execCommand('copy')
   textField.remove()
+  setcopy("Done");
+  setTimeout(()=>{
+    setcopy("Copy"); 
+  },3000)
+
  }
 
 function logout(){
@@ -67,11 +73,11 @@ function logout(){
         &nbsp;&nbsp;&nbsp;
         <button onClick={click}>Create</button>
         <br/><br/>
-        <h2 className="linkaddress" onClick={copylink}>{data}</h2>
+        <h2 className="linkaddress" >{data}</h2>
         <br/>
         {
           data ? 
-          <button>Copy Text</button> :
+          <button onClick={copylink} style={{width:"80px"}}>{copy}</button> :
           <h1></h1>
         }
         </center>
