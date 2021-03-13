@@ -9,8 +9,7 @@ const Signup = ({myfunction})=>{
     const login = ()=>{
         auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(()=>{
             auth.createUserWithEmailAndPassword(email , password).then((userCredential)=>{
-                myfunction(userCredential.user.email);
-                window.location = "/";
+                // window.location = "/";
             }).catch((er)=>{
                 alert(er.message);
             })

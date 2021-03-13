@@ -18,6 +18,10 @@ const SignIn = ({myfunction})=>{
         
     }
 
+    const skip = ()=>{
+        myfunction("anonymous");
+    }
+
     return(
         <div className="container top">
             <h1 className="text-center font-bold" style={{color:"white"}}>Sign In</h1>
@@ -32,6 +36,7 @@ const SignIn = ({myfunction})=>{
                 <br/>
                 <h5>or</h5>
                 <h5 style={{marginBottom:"10px"}}><Link to="/signup">Signup</Link></h5>
+                <p style={{cursor:"pointer"}} onClick={skip}>Skip for now</p>
                 <br/>
                 </center>
             </div>

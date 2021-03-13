@@ -4,6 +4,7 @@ import Auth  from './firebase';
 import {useState} from 'react';
 import SignIn from './SignIn';
 import Signup from './signup';
+import Dashboard from './dashboard';
 import {BrowserRouter as Router , Route} from 'react-router-dom';
 function App() {
   const [user , setuser] = useState(Auth.currentUser || null);
@@ -19,11 +20,14 @@ function App() {
   return (
     user ? 
     <InputBar myfunction={myfunction}/>
+    
     :
     <Router>
       <Route exact path="/"><SignIn myfunction={myfunction} /></Route>
       <Route exact path="/signup"><Signup myfunction={myfunction} /></Route>
+      {/* <Route exact path="/dashboard"><Dashboard/></Route> */}
     </Router>
+    
     
   );
 }

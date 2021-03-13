@@ -28,7 +28,7 @@ function InputBar({myfunction}) {
      passcode : boolvalue,
      pass : password,
      short : link,
-     user : Auth.currentUser
+     user : Auth.currentUser ? Auth.currentUser.email : "anonymous"
     }).then(response=>{
        setdata(response.data);
        setinput("");
@@ -38,6 +38,16 @@ function InputBar({myfunction}) {
     })
 
  }
+
+ const copylink = ()=>{
+  var textField = document.createElement('textarea')
+  textField.innerText = data
+  document.body.appendChild(textField)
+  textField.select()
+  document.execCommand('copy')
+  textField.remove()
+ }
+
 function logout(){
   Auth.signOut();
   myfunction(null);
@@ -57,10 +67,17 @@ function logout(){
         &nbsp;&nbsp;&nbsp;
         <button onClick={click}>Create</button>
         <br/><br/>
-        <h2 className="linkaddress"><a href={data} target="blank">{data}</a></h2>
+        <h2 className="linkaddress" onClick={copylink}>{data}</h2>
+        <br/>
+        {
+          data ? 
+          <button>Copy Text</button> :
+          <h1></h1>
+        }
         </center>
       </div>
     </div>
+    
       
   );
 }
