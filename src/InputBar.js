@@ -50,7 +50,6 @@ function InputBar({myfunction}) {
 
 function logout(){
   Auth.signOut();
-  window.location = "https://abhishek07kalra.github.io/ReactUrlShortner/";
   myfunction(null);
 }
   return (

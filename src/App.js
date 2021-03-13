@@ -22,9 +22,8 @@ function App() {
     
     :
     <Router>
-      <Route exact path="https://abhishek07kalra.github.io/ReactUrlShortner/"><SignIn myfunction={myfunction} /></Route>
-      <Route exact path="https://abhishek07kalra.github.io/ReactUrlShortner/signup"><Signup myfunction={myfunction} /></Route>
-      {/* <Route exact path="/dashboard"><Dashboard/></Route> */}
+      <Route exact path="/ReactUrlShortner/"><SignIn myfunction={myfunction} /></Route>
+      <Route exact path="/ReactUrlShortner/signup"><Signup myfunction={myfunction} /></Route>
     </Router>
     
     

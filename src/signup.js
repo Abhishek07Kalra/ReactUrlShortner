@@ -28,7 +28,7 @@ const Signup = ({myfunction})=>{
                 <br/>
                 <button className="but" onClick={login}>Sign up</button>
                 <h5>or</h5>
-                <h5 style={{marginBottom:"10px"}}><Link to="/">SignIn</Link></h5>
+                <h5 style={{marginBottom:"10px"}}><Link to="/ReactUrlShortner/">SignIn</Link></h5>
                 <br/>
                 </center>
             </div>
