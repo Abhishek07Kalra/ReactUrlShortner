@@ -4,7 +4,6 @@ import Auth  from './firebase';
 import {useState} from 'react';
 import SignIn from './SignIn';
 import Signup from './signup';
-import Dashboard from './dashboard';
 import {BrowserRouter as Router , Route} from 'react-router-dom';
 function App() {
   const [user , setuser] = useState(Auth.currentUser || null);
