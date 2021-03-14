@@ -2,6 +2,7 @@ import InputBar from './InputBar';
 import Auth  from './firebase';
 import {useState} from 'react';
 import SignIn from './SignIn';
+import Reset from './reset';
 import Signup from './signup';
 import {BrowserRouter as Router , Route} from 'react-router-dom';
 function App() {
@@ -10,9 +11,10 @@ function App() {
       setuser(curruser);
   }
     Auth.onAuthStateChanged(async userAuth => {
-      if(userAuth){
+      if(userAuth && userAuth.emailVerified){
         setuser(Auth.currentUser);
       }
+      
     });
 
   return (
@@ -23,6 +25,7 @@ function App() {
     <Router>
       <Route exact path="/ReactUrlShortner/"><SignIn myfunction={myfunction} /></Route>
       <Route exact path="/ReactUrlShortner/signup"><Signup myfunction={myfunction} /></Route>
+      <Route exact path="/ReactUrlShortner/reset"><Reset/></Route>
     </Router>
     
     

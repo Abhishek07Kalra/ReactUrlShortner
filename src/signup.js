@@ -9,10 +9,16 @@ const Signup = ({myfunction})=>{
     const login = ()=>{
         auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(()=>{
             auth.createUserWithEmailAndPassword(email , password).then((userCredential)=>{
-                // window.location = "/";
+                userCredential.user.sendEmailVerification();
+                document.getElementById('hide').style.display = "block";
+                auth.signOut();
+                setTimeout(()=>{
+                    document.getElementById('hide').style.display = "none";
+                    window.location = "/ReactUrlShortner/";
+                },5000);
             }).catch((er)=>{
                 alert(er.message);
-            })
+            });
         })
         
     }
@@ -26,6 +32,7 @@ const Signup = ({myfunction})=>{
                 <br/>
                 <input type="password" className="text-center input " value={password} onChange={e=>setpasword(e.target.value)} placeholder="Enter your password"></input>
                 <br/>
+                <p id="hide">account created , please verify your email to signin</p>
                 <button className="but" onClick={login}>Sign up</button>
                 <h5>or</h5>
                 <h5 style={{marginBottom:"10px"}}><Link to="/ReactUrlShortner/">SignIn</Link></h5>

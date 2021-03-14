@@ -13,7 +13,7 @@
 }
 
 .but{
-    margin-top: 35px;
+    margin-top: 15px;
     margin-bottom: 10px;
     outline: 0;
     text-decoration: none;
@@ -42,14 +42,35 @@
     height: 50px;
     border: none;
     border:0;
-    padding-top: 15px;
-    margin-top: 15px;
-    margin-bottom: 20px;
+    padding-top: 10px;
+    margin-top: 10px;
+    margin-bottom: 15px;
     text-align: center;
     border-bottom: 2px solid black;
     outline: none;
     font-size: 20px;
 }
+#hide{
+    display:none;
+    color: red;
+}
+#hideerr{
+    display:none;
+    color: red;
+}
+#emailveri{
+    display: none;
+    cursor: pointer;
+    color:blue;
+}
+
+.s{
+    margin-top: -5px;
+    margin-bottom: -10px;
+    font-size: 14px;
+    color:red;
+}
+
 @media screen and (max-width: 700px) {
     .sign{
         width: 320px;
