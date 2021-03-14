@@ -1,6 +1,5 @@
 import './signin.css';
 import auth from './firebase';
-import firebase from 'firebase/app';
 import {useState} from 'react';
 import {Link} from 'react-router-dom';
 const Reset = ()=>{
@@ -9,7 +8,7 @@ const Reset = ()=>{
         auth.sendPasswordResetEmail(email).then(()=>{
             document.getElementById('hide').style.display = "block"
         }).catch(err=>{
-            if(err.code == "auth/user-not-found"){
+            if(err.code === "auth/user-not-found"){
             document.getElementById('hideerr').style.display = "block"
             setTimeout(()=>{
                 document.getElementById('hideerr').style.display = "none"

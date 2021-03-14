@@ -2,12 +2,13 @@ import './signin.css';
 import auth from './firebase';
 import firebase from 'firebase/app';
 import {useState} from 'react';
-import {Link , BrowserRouter as Router} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 const SignIn = ({myfunction})=>{
     const [email , setemail] = useState("");
     const [password , setpasword] = useState("");
     const [verifydata , setverify] = useState("Send verification link");
-    const [info , setinfo] = useState("Account not found")
+    const [info , setinfo] = useState("Account not found");
+
     const checkemailpassword = ()=>{
         if(!email.includes('@') || !email.includes('.')){
             document.getElementById('hideemail').style.display = "block";
@@ -45,7 +46,7 @@ const SignIn = ({myfunction})=>{
                     }
                     
                 }).catch((er)=>{
-                    if(er.message == "There is no user record corresponding to this identifier. The user may have been deleted."){
+                    if(er.message === "There is no user record corresponding to this identifier. The user may have been deleted."){
                         document.getElementById('hideaccount').style.display = "block";
                         setTimeout(()=>{
                             document.getElementById('hideaccount').style.display = "none";
@@ -53,7 +54,7 @@ const SignIn = ({myfunction})=>{
                         },5000);
                         return;
                     }
-                    if(er.message == "The password is invalid or the user does not have a password."){
+                    if(er.message === "The password is invalid or the user does not have a password."){
                         setinfo("Wrong Password");
                         document.getElementById('hideaccount').style.display = "block";
                         setTimeout(()=>{

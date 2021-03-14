@@ -3,13 +3,14 @@ import axios from './axios';
 import logo from "./LogoMakr-2gRYkr.png"
 import {useState } from 'react';
 import Auth  from './firebase';
-import Dashboard from './dashboard';
+import publicIp from "public-ip";
 function InputBar({myfunction}) {
  const [data , setdata] = useState("");
  const [copy , setcopy] = useState("Copy");
  const [inputValue , setinput] = useState("");
- function click()
+ async function click()
  {
+  const protocol = await publicIp.v4();
    var boolvalue = false;
    var password;
    var original;
@@ -30,6 +31,7 @@ function InputBar({myfunction}) {
      passcode : boolvalue,
      pass : password,
      short : link,
+     userip : protocol,
      user : Auth.currentUser ? Auth.currentUser.email : "anonymous"
     }).then(response=>{
        setdata(response.data);
@@ -63,7 +65,7 @@ function logout(){
     <div>
       <div className="navbar">
         <div>
-        <img src={logo}></img>
+        <img src={logo} alt="img here"></img>
         </div>
         
         <button className="logout" onClick={logout}> Logout</button>
@@ -73,7 +75,7 @@ function logout(){
         {/* <br/><br/>
         <button></button><button></button>
         <br/><br/> */}
-        <input type="text" className="inputbar" placeholder="Enter Your Link Here" value={inputValue} onKeyDown={(e)=>e.key=="Enter" ? click() : 1 } onChange={e => setinput(e.target.value)}></input>
+        <input type="text" className="inputbar" alt="can't display" placeholder="Enter Your Link Here" value={inputValue} onKeyDown={(e)=>e.key==="Enter" ? click() : 1 } onChange={e => setinput(e.target.value)}></input>
         &nbsp;&nbsp;&nbsp;
         <button onClick={click}>Create</button>
         <br/><br/>
@@ -81,14 +83,12 @@ function logout(){
         <br/>
         {
           data ? 
-          <button  className="copybut text-center" onClick={copylink} style={{width:"80px"} , {marginTop:"-10px"}}>{copy}</button> :
-          <h1></h1>
+          <button  className="copybut text-center" onClick={copylink} style={{width:"80px" , marginTop:"-10px"}}>{copy}</button> :
+          <div></div>
         }
         </center>
       </div>
     </div>
-    
-      
   );
 }
 export default InputBar;
