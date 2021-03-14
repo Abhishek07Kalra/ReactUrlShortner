@@ -7,7 +7,29 @@ const SignIn = ({myfunction})=>{
     const [email , setemail] = useState("");
     const [password , setpasword] = useState("");
     const [verifydata , setverify] = useState("Send verification link");
+    const [info , setinfo] = useState("Account not found")
+    const checkemailpassword = ()=>{
+        if(!email.includes('@') || !email.includes('.')){
+            document.getElementById('hideemail').style.display = "block";
+            setTimeout(()=>{
+                document.getElementById('hideemail').style.display = "none";
+            } , 5000);
+            return true;
+        }
+        if(password.length < 8){
+            document.getElementById('hidepassword').style.display = "block";
+            setTimeout(()=>{
+                document.getElementById('hidepassword').style.display = "none";
+            } , 5000);
+            return true;
+        }
+        return false;
+    }
+
     const login = ()=>{
+        if(checkemailpassword()){
+            return;
+        }
         auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(()=>{
                 auth.signInWithEmailAndPassword(email , password).then((userCredential)=>{
                     if(auth.currentUser.emailVerified){
@@ -23,6 +45,23 @@ const SignIn = ({myfunction})=>{
                     }
                     
                 }).catch((er)=>{
+                    if(er.message == "There is no user record corresponding to this identifier. The user may have been deleted."){
+                        document.getElementById('hideaccount').style.display = "block";
+                        setTimeout(()=>{
+                            document.getElementById('hideaccount').style.display = "none";
+                            
+                        },5000);
+                        return;
+                    }
+                    if(er.message == "The password is invalid or the user does not have a password."){
+                        setinfo("Wrong Password");
+                        document.getElementById('hideaccount').style.display = "block";
+                        setTimeout(()=>{
+                            document.getElementById('hideaccount').style.display = "none";
+                            setinfo("Account not found");
+                        },5000);
+                        return;
+                    }
                     alert(er.message);
                 })
             
@@ -30,8 +69,9 @@ const SignIn = ({myfunction})=>{
         })
         
     }
-
+    
     const sendverificationlink = ()=>{
+        checkemailpassword();
         auth.signInWithEmailAndPassword(email , password).then((userCredential)=>{
             userCredential.user.sendEmailVerification();
             setverify("Email Sent!!");
@@ -57,10 +97,12 @@ const SignIn = ({myfunction})=>{
                 <center>
                     <br/><br/>
                 <input type="email" className="text-center input" value={email}onChange={e=>setemail(e.target.value)} placeholder="Enter your email"></input>
-                <br/>
+                <p id="hideemail">Invalid Email </p>
                 <input type="password" className="text-center input " value={password} onChange={e=>setpasword(e.target.value)} placeholder="Enter your password"></input>
                 <br/>
+                <p id="hidepassword">Invalid Password</p>
                 <p id="hide">Please verify your email </p>
+                <p id="hideaccount">{info}</p>
                 <p id="emailveri" onClick={sendverificationlink}>{verifydata}</p>
                 <button className="but" onClick={login}>LOGIN</button>
                 <br/>

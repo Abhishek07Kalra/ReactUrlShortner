@@ -3,6 +3,7 @@ import axios from './axios';
 import logo from "./LogoMakr-2gRYkr.png"
 import {useState } from 'react';
 import Auth  from './firebase';
+import Dashboard from './dashboard';
 function InputBar({myfunction}) {
  const [data , setdata] = useState("");
  const [copy , setcopy] = useState("Copy");
@@ -69,6 +70,9 @@ function logout(){
       </div>
       <div className='hello'>
         <center>
+        {/* <br/><br/>
+        <button></button><button></button>
+        <br/><br/> */}
         <input type="text" className="inputbar" placeholder="Enter Your Link Here" value={inputValue} onKeyDown={(e)=>e.key=="Enter" ? click() : 1 } onChange={e => setinput(e.target.value)}></input>
         &nbsp;&nbsp;&nbsp;
         <button onClick={click}>Create</button>
