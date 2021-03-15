@@ -9,6 +9,8 @@ const SignIn = ({myfunction})=>{
     const [verifydata , setverify] = useState("Send verification link");
     const [info , setinfo] = useState("Account not found");
 
+    
+
     const checkemailpassword = ()=>{
         if(!email.includes('@') || !email.includes('.')){
             document.getElementById('hideemail').style.display = "block";
