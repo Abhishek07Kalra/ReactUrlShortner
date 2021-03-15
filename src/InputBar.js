@@ -2,7 +2,7 @@ import './inputBar.css';
 import axios from './axios';
 import logo from "./LogoMakr-2gRYkr.png"
 import {useState } from 'react';
-import Auth  from './firebase';
+import Auth  from './firebase.js';
 import publicIp from "public-ip";
 function InputBar({myfunction}) {
  const [data , setdata] = useState("");

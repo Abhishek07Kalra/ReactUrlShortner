@@ -1,13 +1,12 @@
 import './signin.css';
 import auth from './firebase';
-import firebase from 'firebase/app';
 import {useState} from 'react';
 import {Link} from 'react-router-dom';
 const Signup = ({myfunction})=>{
     const [email , setemail] = useState("");
     const [password , setpasword] = useState("");
     const login = ()=>{
-        auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(()=>{
+        auth.setPersistence(auth.Auth.Persistence.LOCAL).then(()=>{
             auth.createUserWithEmailAndPassword(email , password).then((userCredential)=>{
                 userCredential.user.sendEmailVerification();
                 document.getElementById('hide').style.display = "block";

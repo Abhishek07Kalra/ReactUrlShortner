@@ -1,6 +1,5 @@
 import './signin.css';
 import auth from './firebase';
-import firebase from 'firebase/app';
 import {useState} from 'react';
 import {Link} from 'react-router-dom';
 const SignIn = ({myfunction})=>{
@@ -33,7 +32,7 @@ const SignIn = ({myfunction})=>{
         if(checkemailpassword()){
             return;
         }
-        auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(()=>{
+        auth.setPersistence(auth.Auth.Persistence.LOCAL).then(()=>{
                 auth.signInWithEmailAndPassword(email , password).then((userCredential)=>{
                     if(auth.currentUser.emailVerified){
                         myfunction(userCredential.user.email);
