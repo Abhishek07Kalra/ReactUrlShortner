@@ -7,7 +7,7 @@ const LoaderComp = ({loading})=>{
       });
     return(
         <center>
-        <div className="loader">
+        <div id="loader">
         <Loader
         type="TailSpin"
         color="rgb(155, 236, 34)"

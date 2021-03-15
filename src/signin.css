@@ -74,6 +74,10 @@
     cursor: pointer;
     color:blue;
 }
+#hideerr{
+    display:none;
+    color: red;
+}
 
 .s{
     margin-top: -5px;

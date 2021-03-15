@@ -1,6 +1,8 @@
 import './signin.css';
 import auth from './firebase';
+import firebase from 'firebase';
 import {useState} from 'react';
+import Loader from 'react-loader-spinner';
 import {Link} from 'react-router-dom';
 const SignIn = ({myfunction})=>{
     const [email , setemail] = useState("");
@@ -28,11 +30,26 @@ const SignIn = ({myfunction})=>{
         return false;
     }
 
+    const loaderenable = ()=>{
+        var signup = document.getElementById('sign').style;
+        var con = document.getElementById('body').style;
+        var loader = document.getElementById('loader').style;
+        signup.display = "none";
+        con.display = "none";
+        loader.display = "block";
+        setTimeout(()=>{
+            signup.display = "block";
+            con.display = "block";
+            loader.display = "none";
+        },2000)
+    }
+
     const login = ()=>{
         if(checkemailpassword()){
             return;
         }
-        auth.setPersistence(auth.Auth.Persistence.LOCAL).then(()=>{
+        loaderenable();
+        auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(()=>{
                 auth.signInWithEmailAndPassword(email , password).then((userCredential)=>{
                     if(auth.currentUser.emailVerified){
                         myfunction(userCredential.user.email);
@@ -64,7 +81,10 @@ const SignIn = ({myfunction})=>{
                         },5000);
                         return;
                     }
-                    alert(er.message);
+                    setTimeout(()=>{
+                        alert(er.message);
+                    },2500);
+                    
                 })
             
             
@@ -94,8 +114,8 @@ const SignIn = ({myfunction})=>{
 
     return(
         <div className="container top">
-            <h1 className="text-center font-bold" style={{color:"white"}}>Sign In</h1>
-            <div className="container sign">
+            <h1 className="text-center font-bold" id="sign" style={{color:"white"}}>Sign In</h1>
+            <div className="container sign" id="body">
                 <center>
                     <br/><br/>
                 <input type="email" className="text-center input" value={email}onChange={e=>setemail(e.target.value)} placeholder="Enter your email"></input>
@@ -115,6 +135,16 @@ const SignIn = ({myfunction})=>{
                 <br/>
                 </center>
             </div>
+            <center>
+            <div id="loader" style={{display:"none"}}>
+                <Loader
+                type="TailSpin"
+                color="rgb(155, 236, 34)"
+                height={70}
+                width={70} //3 secs
+                />
+            </div>
+            </center>
         </div>
     );
 }
