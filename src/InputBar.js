@@ -69,7 +69,11 @@ function logout(){
         <img src={logo} alt="img here"></img>
         </div>
         
-        <button className="logout" onClick={logout}> Logout</button>
+        <button className="logout" onClick={logout}>
+          {
+          Auth.currentUser ? "Logout" : "Sign In"
+          }
+        </button>
       </div>
       <div className='hello'>
         <center>
