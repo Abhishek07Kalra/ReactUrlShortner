@@ -53,7 +53,6 @@ const SignIn = ({myfunction})=>{
                 auth.signInWithEmailAndPassword(email , password).then((userCredential)=>{
                     if(auth.currentUser.emailVerified){
                         myfunction(userCredential.user.email);
-                    console.log(userCredential.user);
                     }
                     else{
                         document.getElementById('hide').style.display = "block";

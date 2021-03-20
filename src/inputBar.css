@@ -55,6 +55,13 @@ button{
     padding-bottom: 2px;
 }
 
+.dash h2{
+    color:greenyellow;
+}
+.dash h3{
+    color:white;
+    margin-top: 20px;
+}
 
 @media screen and (max-width: 700px) {
     .inputbar{

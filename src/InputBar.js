@@ -4,6 +4,7 @@ import logo from "./LogoMakr-2gRYkr.png"
 import {useState } from 'react';
 import Auth  from './firebase.js';
 import publicIp from "public-ip";
+import Dashboard from './dashboard';
 function InputBar({myfunction}) {
  const [data , setdata] = useState("");
  const [copy , setcopy] = useState("Copy");
@@ -88,7 +89,18 @@ function logout(){
         }
         </center>
       </div>
+      <div className="dash">
+        <center>
+        <h2 style={{marginTop:"20px"}}>Dashboard</h2>
+        {
+          !Auth.currentUser ? <div><h3>SignIn to see dashboard</h3></div>
+          :
+          <Dashboard/>
+        }
+        </center>
+      </div>
     </div>
+   
   );
 }
 export default InputBar;

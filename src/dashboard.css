@@ -1,0 +1,13 @@
+.links{
+    background-color: white;
+    max-width: 600px;
+    height: auto;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
+}
+.loadbut{
+    width:200px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
