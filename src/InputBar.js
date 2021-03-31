@@ -2,7 +2,7 @@ import './inputBar.css';
 import axios from './axios';
 import logo from "./LogoMakr-2gRYkr.png"
 import {useState } from 'react';
-import Auth  from './firebase.js';
+import {auth}  from './firebase.js';
 import publicIp from "public-ip";
 import Dashboard from './dashboard';
 function InputBar({myfunction}) {
@@ -33,7 +33,7 @@ function InputBar({myfunction}) {
      pass : password,
      short : link,
      userip : protocol,
-     user : Auth.currentUser ? Auth.currentUser.email : "anonymous"
+     user : auth.currentUser ? auth.currentUser.email : "anonymous"
     }).then(response=>{
        setdata(response.data);
        setinput("");
@@ -59,7 +59,7 @@ function InputBar({myfunction}) {
  }
 
 function logout(){
-  Auth.signOut();
+  auth.signOut();
   myfunction(null);
 }
   return (
@@ -71,7 +71,7 @@ function logout(){
         
         <button className="logout" onClick={logout}>
           {
-          Auth.currentUser ? "Logout" : "Sign In"
+          auth.currentUser ? "Logout" : "Sign In"
           }
         </button>
       </div>
@@ -97,7 +97,7 @@ function logout(){
         <center>
         <h2 style={{marginTop:"20px"}}>Dashboard</h2>
         {
-          !Auth.currentUser ? <div><h3>SignIn to see dashboard</h3></div>
+          !auth.currentUser ? <div><h3>SignIn to see dashboard</h3></div>
           :
           <Dashboard/>
         }

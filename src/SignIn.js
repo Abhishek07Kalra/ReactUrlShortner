@@ -1,9 +1,10 @@
 import './signin.css';
-import auth from './firebase';
+import {auth , provider} from './firebase';
 import firebase from 'firebase';
 import {useState} from 'react';
 import Loader from 'react-loader-spinner';
 import {Link} from 'react-router-dom';
+import GoogleButton from 'react-google-button'
 const SignIn = ({myfunction})=>{
     const [email , setemail] = useState("");
     const [password , setpasword] = useState("");
@@ -111,6 +112,10 @@ const SignIn = ({myfunction})=>{
         myfunction("anonymous");
     }
 
+    const GoogleLogin = ()=>{
+        auth.signInWithPopup(provider).catch(alert);
+    }
+
     return(
         <div className="container top">
             <h1 className="text-center font-bold" id="sign" style={{color:"white"}}>Sign In</h1>
@@ -125,13 +130,15 @@ const SignIn = ({myfunction})=>{
                 <p id="hide">Please verify your email </p>
                 <p id="hideaccount">{info}</p>
                 <p id="emailveri" onClick={sendverificationlink}>{verifydata}</p>
-                <button className="but" onClick={login}>LOGIN</button>
-                <br/>
+                <button className="but" onClick={login}>LOGIN</button><br/><br/>
+                <GoogleButton onClick={GoogleLogin}/>
                 <h5>or</h5>
+                <p>
                 <h5 style={{marginBottom:"10px"}}><Link to="/ReactUrlShortner/signup">Signup</Link></h5>
                 <p className="skip" style={{cursor:"pointer"}} onClick={skip}>Skip for now</p>
                 <p className="s" style={{cursor:"pointer"}} ><Link to="/ReactUrlShortner/reset">Forget password</Link></p>
-                <br/>
+                </p>
+               <br/>
                 </center>
             </div>
             <center>

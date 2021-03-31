@@ -1,6 +1,6 @@
 import axios from './axios';
 import {useState} from 'react';
-import auth from './firebase.js';
+import {auth} from './firebase.js';
 import './dashboard.css';
 const Dashboard = ()=>{
     const [data , setdata] = useState([]);

@@ -1,5 +1,5 @@
 import './signin.css';
-import auth from './firebase';
+import {auth} from './firebase';
 import {useState} from 'react';
 import {Link} from 'react-router-dom';
 const Reset = ()=>{
