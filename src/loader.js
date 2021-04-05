@@ -1,10 +1,7 @@
 import Loader from "react-loader-spinner";
 import './loading.css';
-const LoaderComp = ({loading})=>{
+const LoaderComp = ()=>{
     
-    window.addEventListener('load', () => {
-        loading();
-      });
     return(
         <center>
         <div id="loader">

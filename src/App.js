@@ -1,6 +1,7 @@
 import InputBar from './InputBar';
 import {auth}  from './firebase';
 import {useState} from 'react';
+import {useAuthState} from 'react-firebase-hooks/auth';
 import SignIn from './SignIn';
 import Reset from './reset';
 import Signup from './signup';
@@ -8,7 +9,7 @@ import Loader from './loader';
 import {BrowserRouter as Router , Route} from 'react-router-dom';
 function App() {
   const [user , setuser] = useState(auth.currentUser || null);
-  const [loading , setloading] = useState(true);
+  const [userAuth , loading] = useAuthState(auth);
   const myfunction = (curruser)=>{
       setuser(curruser);
   }
@@ -18,17 +19,11 @@ function App() {
       }
       
     });
-    const loadingdata = ()=>{
-      setTimeout(()=>{
-        setloading(false);
-      },2000);
-        
-    }
   return (
     loading ? 
-    <Loader loading={loadingdata}/>
+    <Loader/>
     :
-    user ? 
+    user || userAuth ? 
     <InputBar myfunction={myfunction}/>
     
     :

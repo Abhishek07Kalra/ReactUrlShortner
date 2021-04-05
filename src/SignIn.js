@@ -10,7 +10,7 @@ const SignIn = ({myfunction})=>{
     const [password , setpasword] = useState("");
     const [verifydata , setverify] = useState("Send verification link");
     const [info , setinfo] = useState("Account not found");
-
+    
     
 
     const checkemailpassword = ()=>{
