@@ -5,12 +5,12 @@ import {useState } from 'react';
 import {auth}  from './firebase.js';
 import publicIp from "public-ip";
 import Dashboard from './dashboard';
-function InputBar({myfunction}) {
+function InputBar() {
  const [data , setdata] = useState("");
  const [copy , setcopy] = useState("Copy");
  const [inputValue , setinput] = useState("");
- async function click()
- {
+ 
+ async function click(){
   const protocol = await publicIp.v4();
    var boolvalue = false;
    var password;
@@ -33,7 +33,7 @@ function InputBar({myfunction}) {
      pass : password,
      short : link,
      userip : protocol,
-     user : auth.currentUser ? auth.currentUser.email : "anonymous"
+     user : auth.currentUser.email ? auth.currentUser.email : "anonymous"
     }).then(response=>{
        setdata(response.data);
        setinput("");
@@ -60,7 +60,6 @@ function InputBar({myfunction}) {
 
 function logout(){
   auth.signOut();
-  myfunction(null);
 }
   return (
     <div>
@@ -71,15 +70,12 @@ function logout(){
         
         <button className="logout" onClick={logout}>
           {
-          auth.currentUser ? "Logout" : "Sign In"
+          auth.currentUser ? auth.currentUser.email ? "Logout" : "Sign In" : "Sign In"
           }
         </button>
       </div>
       <div className='hello'>
         <center>
-        {/* <br/><br/>
-        <button></button><button></button>
-        <br/><br/> */}
         <input type="text" className="inputbar" alt="can't display" placeholder="Enter Your Link Here" value={inputValue} onKeyDown={(e)=>e.key==="Enter" ? click() : 1 } onChange={e => setinput(e.target.value)}></input>
         &nbsp;&nbsp;&nbsp;
         <button onClick={click}>Create</button>
@@ -99,7 +95,10 @@ function logout(){
         {
           !auth.currentUser ? <div><h3>SignIn to see dashboard</h3></div>
           :
+          auth.currentUser.email ? 
           <Dashboard/>
+          :
+          <div><h3>SignIn to see dashboard</h3></div>
         }
         </center>
       </div>

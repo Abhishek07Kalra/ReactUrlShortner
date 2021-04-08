@@ -1,13 +1,14 @@
-import './signin.css';
+import './signup.css';
 import './loading.css';
 import {auth} from './firebase';
 import Loader from 'react-loader-spinner';
 import firebase from 'firebase';
 import {useState} from 'react';
 import {Link} from 'react-router-dom';
-const Signup = ({myfunction})=>{
+const Signup = ()=>{
     const [email , setemail] = useState("");
     const [password , setpasword] = useState("");
+
     const loaderenable = ()=>{
         var signup = document.getElementById('sign').style;
         var con = document.getElementById('body').style;
@@ -21,6 +22,7 @@ const Signup = ({myfunction})=>{
             loader.display = "none";
         },2000)
     }
+
     const checkemailpassword = ()=>{
         if(!email.includes('@') || !email.includes('.')){
             document.getElementById('hideemail').style.display = "block";
@@ -44,42 +46,42 @@ const Signup = ({myfunction})=>{
             return;
         }
         loaderenable();
-        auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(()=>{
-            auth.createUserWithEmailAndPassword(email , password).then((userCredential)=>{
-                userCredential.user.sendEmailVerification();
+        auth.createUserWithEmailAndPassword(email , password).then((userCredential)=>{
+            userCredential.user.sendEmailVerification();
+            auth.signOut();
+            setTimeout(()=>{
                 document.getElementById('hide').style.display = "block";
-                auth.signOut();
                 setTimeout(()=>{
-                    document.getElementById('hide').style.display = "none";
-                    window.location = "/ReactUrlShortner/";
+                document.getElementById('hide').style.display = "none";
+                window.location = "/ReactUrlShortner/";
+                },7000);
+            } , 1000);
+        }).catch((er)=>{
+            if(er.message.includes('already in use')){
+                var comp = document.getElementById('hideerr').style;
+                comp.display = "block";
+                setTimeout(()=>{
+                    comp.display = "none";
                 },5000);
-            }).catch((er)=>{
-                if(er.message.includes('already in use')){
-                    var comp = document.getElementById('hideerr').style;
-                    comp.display = "block";
-                    setTimeout(()=>{
-                        comp.display = "none";
-                    },5000);
-                    return;
+                return;
                 }
-                else{
-                    var comp1 = document.getElementById('hideerr');
-                    comp1.innerHTML = er.message;
-                    comp1.style.display = "block";
-                    setTimeout(()=>{
-                        comp1.style.display = "none";
-                        comp1.innerHTML = "Account already exist";
-                    },5000);
-                }
+            else{
+                var comp1 = document.getElementById('hideerr');
+                comp1.innerHTML = er.message;
+                comp1.style.display = "block";
+                setTimeout(()=>{
+                    comp1.style.display = "none";
+                    comp1.innerHTML = "Account already exist";
+                },5000);
+            }
                 
-            });
-        })
+        });
         
     }
     return(
-        <div className="container top">
-            <h1 className="text-center font-bold" id="sign" style={{color:"white"}}>Sign up</h1>
-            <div className="container sign" id="body" >
+        <div className="container top1">
+            <h1 className="text-center font-bold" id="sign1" style={{color:"white"}}>Sign up</h1>
+            <div className="container sign1" id="body" >
                 <center>
                     <br/><br/>
                 <input type="email" className="text-center input" value={email}onChange={e=>setemail(e.target.value)} placeholder="Enter your email"></input>

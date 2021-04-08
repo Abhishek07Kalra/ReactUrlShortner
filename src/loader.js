@@ -1,10 +1,6 @@
 import Loader from "react-loader-spinner";
 import './loading.css';
-const LoaderComp = ({loading})=>{
-    
-    window.addEventListener('load', () => {
-        loading();
-      });
+const LoaderComp = ()=>{
     return(
         <center>
         <div id="loader">
@@ -13,7 +9,6 @@ const LoaderComp = ({loading})=>{
         color="rgb(155, 236, 34)"
         height={70}
         width={70}
-        timeout={5000} //3 secs
         />
         </div>
         </center>

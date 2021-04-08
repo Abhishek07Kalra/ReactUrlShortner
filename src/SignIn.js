@@ -1,18 +1,19 @@
 import './signin.css';
-import {auth , provider} from './firebase';
+import {auth , providerGoogle , providerGithub} from './firebase';
 import firebase from 'firebase';
 import {useState} from 'react';
 import Loader from 'react-loader-spinner';
 import {Link} from 'react-router-dom';
 import GoogleButton from 'react-google-button'
-const SignIn = ({myfunction})=>{
+import GithubButton from 'react-github-login-button';
+const SignIn = ()=>{
     const [email , setemail] = useState("");
     const [password , setpasword] = useState("");
     const [verifydata , setverify] = useState("Send verification link");
     const [info , setinfo] = useState("Account not found");
 
     
-
+    // Check for the valid email and password.
     const checkemailpassword = ()=>{
         if(!email.includes('@') || !email.includes('.')){
             document.getElementById('hideemail').style.display = "block";
@@ -31,6 +32,7 @@ const SignIn = ({myfunction})=>{
         return false;
     }
 
+    // Enable the loader
     const loaderenable = ()=>{
         var signup = document.getElementById('sign').style;
         var con = document.getElementById('body').style;
@@ -45,6 +47,8 @@ const SignIn = ({myfunction})=>{
         },2000)
     }
 
+    
+    // Login Function
     const login = ()=>{
         if(checkemailpassword()){
             return;
@@ -53,14 +57,14 @@ const SignIn = ({myfunction})=>{
         auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(()=>{
                 auth.signInWithEmailAndPassword(email , password).then((userCredential)=>{
                     if(auth.currentUser.emailVerified){
-                        myfunction(userCredential.user.email);
+                        // User logged in.
                     }
                     else{
                         document.getElementById('hide').style.display = "block";
                         setTimeout(()=>{
                             document.getElementById('hide').style.display = "none";
                             document.getElementById('emailveri').style.display = "block";
-                        },5000);
+                        },3000);
                     }
                     
                 }).catch((er)=>{
@@ -69,7 +73,7 @@ const SignIn = ({myfunction})=>{
                         setTimeout(()=>{
                             document.getElementById('hideaccount').style.display = "none";
                             
-                        },5000);
+                        },3000);
                         return;
                     }
                     if(er.message === "The password is invalid or the user does not have a password."){
@@ -78,7 +82,7 @@ const SignIn = ({myfunction})=>{
                         setTimeout(()=>{
                             document.getElementById('hideaccount').style.display = "none";
                             setinfo("Account not found");
-                        },5000);
+                        },3000);
                         return;
                     }
                     setTimeout(()=>{
@@ -92,33 +96,44 @@ const SignIn = ({myfunction})=>{
         
     }
     
+    // Send verification link for email verification
     const sendverificationlink = ()=>{
         checkemailpassword();
         auth.signInWithEmailAndPassword(email , password).then((userCredential)=>{
             userCredential.user.sendEmailVerification();
+            auth.signOut();
             setverify("Email Sent!!");
             document.getElementById('emailveri').style.color = "green";
             setTimeout(()=>{
                     setverify("Send verification link")
                     document.getElementById('emailveri').style.display = "none";
             },5000)
-            auth.signOut();
         }).catch((er)=>{
             alert(er.message);
         })
     }
 
+    // Skip Function
     const skip = ()=>{
-        myfunction("anonymous");
+        loaderenable();
+        auth.signInAnonymously().then((user)=>{
+            console.log(user);
+        }).catch(alert);
     }
 
+    // Google Login Function
     const GoogleLogin = ()=>{
-        auth.signInWithPopup(provider).catch(alert);
+        auth.signInWithPopup(providerGoogle).catch(alert);
+    }
+
+    // Github Login Function
+    const GithubLogin = ()=>{
+        auth.signInWithPopup(providerGithub).catch(alert);
     }
 
     return(
         <div className="container top">
-            <h1 className="text-center font-bold" id="sign" style={{color:"white"}}>Sign In</h1>
+            <h1 className="text-center font-bold" id="sign" style={{color:"white"}}>Sign In</h1><br/>
             <div className="container sign" id="body">
                 <center>
                     <br/><br/>
@@ -130,15 +145,15 @@ const SignIn = ({myfunction})=>{
                 <p id="hide">Please verify your email </p>
                 <p id="hideaccount">{info}</p>
                 <p id="emailveri" onClick={sendverificationlink}>{verifydata}</p>
-                <button className="but" onClick={login}>LOGIN</button><br/><br/>
-                <GoogleButton onClick={GoogleLogin}/>
-                <h5>or</h5>
-                <p>
-                <h5 style={{marginBottom:"10px"}}><Link to="/ReactUrlShortner/signup">Signup</Link></h5>
+                <button className="but" onClick={login}>LOGIN</button><br/>
+                <hr/>
+                <GoogleButton onClick={GoogleLogin}/><br/>
+                <GithubButton onClick={GithubLogin}/>
+                <p className="merge">
+                <p style={{marginBottom:"10px"}}><Link to="/ReactUrlShortner/signup">Signup</Link></p>
                 <p className="skip" style={{cursor:"pointer"}} onClick={skip}>Skip for now</p>
                 <p className="s" style={{cursor:"pointer"}} ><Link to="/ReactUrlShortner/reset">Forget password</Link></p>
-                </p>
-               <br/>
+                </p><br/>
                 </center>
             </div>
             <center>

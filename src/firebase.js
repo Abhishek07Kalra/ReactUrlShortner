@@ -11,5 +11,6 @@ var firebaseConfig = {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   var auth = firebase.auth();
-  var provider = new firebase.auth.GoogleAuthProvider();
-  export {auth , provider};
+  var providerGithub = new firebase.auth.GithubAuthProvider(); 
+  var providerGoogle = new firebase.auth.GoogleAuthProvider();
+  export {auth , providerGithub , providerGoogle};
