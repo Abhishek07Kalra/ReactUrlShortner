@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/ReactUrlShortner/static/css/main.073faf5a.chunk.css",
-    "main.js": "/ReactUrlShortner/static/js/main.e8411825.chunk.js",
-    "main.js.map": "/ReactUrlShortner/static/js/main.e8411825.chunk.js.map",
+    "main.js": "/ReactUrlShortner/static/js/main.af298888.chunk.js",
+    "main.js.map": "/ReactUrlShortner/static/js/main.af298888.chunk.js.map",
     "runtime-main.js": "/ReactUrlShortner/static/js/runtime-main.60725384.js",
     "runtime-main.js.map": "/ReactUrlShortner/static/js/runtime-main.60725384.js.map",
-    "static/js/2.32c0fdb4.chunk.js": "/ReactUrlShortner/static/js/2.32c0fdb4.chunk.js",
-    "static/js/2.32c0fdb4.chunk.js.map": "/ReactUrlShortner/static/js/2.32c0fdb4.chunk.js.map",
+    "static/js/2.96d2c322.chunk.js": "/ReactUrlShortner/static/js/2.96d2c322.chunk.js",
+    "static/js/2.96d2c322.chunk.js.map": "/ReactUrlShortner/static/js/2.96d2c322.chunk.js.map",
     "static/js/3.1e0f216f.chunk.js": "/ReactUrlShortner/static/js/3.1e0f216f.chunk.js",
     "static/js/3.1e0f216f.chunk.js.map": "/ReactUrlShortner/static/js/3.1e0f216f.chunk.js.map",
     "index.html": "/ReactUrlShortner/index.html",
     "static/css/main.073faf5a.chunk.css.map": "/ReactUrlShortner/static/css/main.073faf5a.chunk.css.map",
-    "static/js/2.32c0fdb4.chunk.js.LICENSE.txt": "/ReactUrlShortner/static/js/2.32c0fdb4.chunk.js.LICENSE.txt"
+    "static/js/2.96d2c322.chunk.js.LICENSE.txt": "/ReactUrlShortner/static/js/2.96d2c322.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.60725384.js",
-    "static/js/2.32c0fdb4.chunk.js",
+    "static/js/2.96d2c322.chunk.js",
     "static/css/main.073faf5a.chunk.css",
-    "static/js/main.e8411825.chunk.js"
+    "static/js/main.af298888.chunk.js"
   ]
 }
