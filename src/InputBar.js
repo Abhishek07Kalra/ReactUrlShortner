@@ -28,7 +28,6 @@ function InputBar() {
      boolvalue = true;
     }
     setdata("Please Wait...")
-    const timeStamp = firebase.firestore.Timestamp.now().toDate().toString()
     axios.post('/addurl' , {
      originalUrl : inputValue==="myshorturl" ? original: inputValue ,
      passcode : boolvalue,
@@ -36,7 +35,7 @@ function InputBar() {
      short : link,
      userip : protocol,
      user : auth.currentUser.email ? auth.currentUser.email : "anonymous",
-     date: timeStamp
+     date: firebase.firestore.Timestamp.now().toDate().toString()
     }).then(response=>{
        setdata(response.data);
        setinput("");
