@@ -1,5 +1,6 @@
 import './inputBar.css';
 import axios from './axios';
+import firebase from 'firebase';
 import logo from "./LogoMakr-2gRYkr.png"
 import {useState } from 'react';
 import {auth}  from './firebase.js';
@@ -27,13 +28,15 @@ function InputBar() {
      boolvalue = true;
     }
     setdata("Please Wait...")
+    const timeStamp = firebase.firestore.Timestamp.now().toDate().toString()
     axios.post('/addurl' , {
      originalUrl : inputValue==="myshorturl" ? original: inputValue ,
      passcode : boolvalue,
      pass : password,
      short : link,
      userip : protocol,
-     user : auth.currentUser.email ? auth.currentUser.email : "anonymous"
+     user : auth.currentUser.email ? auth.currentUser.email : "anonymous",
+     date: timeStamp
     }).then(response=>{
        setdata(response.data);
        setinput("");

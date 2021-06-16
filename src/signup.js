@@ -80,7 +80,7 @@ const Signup = ()=>{
     }
     return(
         <div className="container top1">
-            <h1 className="text-center font-bold" id="sign1" style={{color:"white"}}>Sign up</h1>
+            <h1 className="text-center font-bold" style={{color:"white"}}>Sign up</h1>
             <div className="container sign1" id="body" >
                 <center>
                     <br/><br/>
