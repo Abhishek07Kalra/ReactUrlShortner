@@ -2,7 +2,6 @@ import './signup.css';
 import './loading.css';
 import {auth} from './firebase';
 import Loader from 'react-loader-spinner';
-import firebase from 'firebase';
 import {useState} from 'react';
 import {Link} from 'react-router-dom';
 const Signup = ()=>{

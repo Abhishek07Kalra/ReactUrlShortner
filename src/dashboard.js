@@ -32,8 +32,8 @@ const Dashboard = ()=>{
             <button id="butt" className="loadbut" onClick={Fetchdata}>{dash}</button>
             
         {
-            data.map(res=>(
-                <div className="links">
+            data.map(res , key=>(
+                <div key={key} className="links">
                     <p className="badge text-wrap "><a href={"https://cgcshrt.herokuapp.com/" + res}>{"https://cgcshrt.herokuapp.com/" + res}</a></p>
                 </div>
             ))

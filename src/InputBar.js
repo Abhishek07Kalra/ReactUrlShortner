@@ -5,7 +5,7 @@ import logo from "./LogoMakr-2gRYkr.png"
 import {useState } from 'react';
 import {auth}  from './firebase.js';
 import publicIp from "public-ip";
-import Dashboard from './dashboard';
+import QRCode from "react-qr-code";
 function InputBar() {
  const [data , setdata] = useState("");
  const [copy , setcopy] = useState("Copy");
@@ -16,11 +16,11 @@ function InputBar() {
    var boolvalue = false;
    var password;
    var original;
-   if((inputValue === "") || ((!inputValue.includes(".")) && (!inputValue.includes("myshorturl")))){
+   if((inputValue === "") || ((!inputValue.includes(".")) && (!inputValue.includes("url")))){
     alert("Invalid Input");
     return;
   }
-    if(inputValue === "myshorturl"){
+    if(inputValue === "url"){
      password = prompt("Enter your password");
      original = prompt("Enter your original link");
      var link = prompt("Enter your short link");
@@ -29,7 +29,7 @@ function InputBar() {
     }
     setdata("Please Wait...")
     axios.post('/addurl' , {
-     originalUrl : inputValue==="myshorturl" ? original: inputValue ,
+     originalUrl : inputValue==="url" ? original: inputValue ,
      passcode : boolvalue,
      pass : password,
      short : link,
@@ -85,22 +85,18 @@ function logout(){
         <p className="url" id="link">{data}</p>
         <br/>
         {
-          data ? 
-          <button  className="copybut text-center" onClick={copylink} style={{width:"80px" , marginTop:"-10px"}}>{copy}</button> :
+          data && data !== "Please Wait..." ?
+          <button className="copybut text-center" onClick={copylink} style={{width:"80px" , marginTop:"-10px"}}>{copy}</button> 
+          :
           <div></div>
+          
         }
-        </center>
-      </div>
-      <div className="dash">
-        <center>
-        <h2 style={{marginTop:"20px"}}>Dashboard</h2>
+        <br/><br/><br/>
         {
-          !auth.currentUser ? <div><h3>SignIn to see dashboard</h3></div>
+          data && data !== "Please Wait..." ?
+          <QRCode value={data} size="200" fgColor="#adff2f" bgColor="black"></QRCode>
           :
-          auth.currentUser.email ? 
-          <Dashboard/>
-          :
-          <div><h3>SignIn to see dashboard</h3></div>
+          <div></div>
         }
         </center>
       </div>
