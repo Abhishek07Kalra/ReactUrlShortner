@@ -1,18 +1,17 @@
 import Loader from "react-loader-spinner";
-import './loading.css';
-const LoaderComp = ()=>{
-    return(
-        <center>
-        <div id="loader">
+import "./loading.css";
+const LoaderComp = () => {
+  return (
+    <center>
+      <div id="loader">
         <Loader
-        type="TailSpin"
-        color="rgb(155, 236, 34)"
-        height={70}
-        width={70}
+          type="TailSpin"
+          color="rgb(155, 236, 34)"
+          height={70}
+          width={70}
         />
-        </div>
-        </center>
-        
-    );
-}
+      </div>
+    </center>
+  );
+};
 export default LoaderComp;

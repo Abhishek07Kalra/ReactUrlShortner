@@ -1,7 +1,7 @@
-import Axios from 'axios';
+import Axios from "axios";
 
 const Instance = Axios.create({
-   baseURL:"https://cgcshrt.herokuapp.com/" 
+  baseURL: "https://shrivel.herokuapp.com/",
 });
 
 export default Instance;
