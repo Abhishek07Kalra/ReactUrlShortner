@@ -1,7 +1,7 @@
 import Axios from "axios";
 
 const Instance = Axios.create({
-  baseURL: "https://shrivel.herokuapp.com/",
+  baseURL: "http://localhost:4000/",
 });
 
 export default Instance;

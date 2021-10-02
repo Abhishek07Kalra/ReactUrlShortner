@@ -1,6 +1,10 @@
 body{
     background-color: black;
+    min-width: 100%;
+    margin: 0;
+    position: fixed;
 }
+
 .inputbar{
     background-color: aliceblue;
     width: 600px;
@@ -15,6 +19,19 @@ body{
     border-style: none;
 
 }
+.inputbarid{
+    background-color: aliceblue;
+    width: 250px;
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 6px;
+    margin-top: 5px;
+    border: 0px;
+    text-decoration: none;
+    font-weight: 0;
+    border-style: none;
+}
 img{
     width:120px;
     height: 50px;
@@ -22,6 +39,8 @@ img{
 .navbar{
     background-color:#adff2f;
     height: 50px;
+    width: 100;
+    min-width: 100%;
     text-align: center;
 }
 .logout{
@@ -38,13 +57,14 @@ button{
     border-radius: 6px;
     font-size: 20px;
     cursor: pointer;
+    margin-top: 5px;
     text-decoration: none;
     font-weight: 0;
     border-style: none;
     border: 0px;
 }
 .url{
-    color:grey;
+    color:white;
     margin-left: -1px;
     font-size: 30px;
 }
@@ -63,21 +83,89 @@ button{
     margin-top: 20px;
 }
 
+.Switchtext{
+    width: 220px;
+    background-color: white;
+    visibility: hidden;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    padding: 5px 0;
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+
+}
+.switch:hover + span{
+    visibility: visible;
+}
+
+.autodelete
+{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.checkbox{
+    width: 14px;
+    height: 14px;
+    margin-top: 1.5px;
+}
+
+.qrcode{
+    width: 600px;
+    height: 500px;
+    background-color: white;
+    margin-top: 100px;
+    border-radius: 30px;
+    
+}
+
+.qrdata{
+    width: 600px;
+    height: 400px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+#closeButton{
+    width: 25px;
+    color:grey;
+    margin-top: 5px;
+    margin-right: 15px;
+    float: right;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 700px) {
     .inputbar{
         width: 310px;
         margin-left: 10px;
     }
     button{
-        margin-top: 15px;
+        margin-top: 5px;
         margin-left: -8px;
     }
     .url{
         font-size: 16px;
     }
     .copybut{
-       width: 70px;
-       height: 40px;
+        width: 70px;
+        height: 40px;
     }
-    
+
+    .qrcode{
+        width: 350px;
+        height: 450px;
+        margin-top: 80px;
+        border-radius: 30px;
+    }
+
+    .qrdata{
+        width: 350px;
+        height: 400px;
+    }   
   }
