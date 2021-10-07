@@ -9,6 +9,7 @@ import { auth } from "./firebase.js";
 import domtoimage from "dom-to-image";
 import publicIp from "public-ip";
 import QRCode from "react-qr-code";
+
 function InputBar() {
   const container = useRef(null);
   const [data, setdata] = useState("");
@@ -17,7 +18,7 @@ function InputBar() {
   const [inputValue, setinput] = useState("");
   const [shortValue, setShortValue] = useState("");
   const [SwitchInput, setSwitch] = useState(0);
-  const [checkbox, setCheckBox] = useState(0);
+  const [checkbox, setCheckBox] = useState(1);
 
   async function click() {
     const protocol = await publicIp.v4();
@@ -53,7 +54,6 @@ function InputBar() {
         }
         setinput("");
         setSwitch(0);
-        setCheckBox(0);
       })
       .catch((err) => {
         alert(err);
